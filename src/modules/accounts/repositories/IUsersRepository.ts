@@ -1,15 +1,6 @@
+import { ICreateUserDTO } from "../dtos/ICreateUserDTO";
 import { User } from "../infra/typeorm/entities/User";
 
-interface ICreateUserDTO {
-  id?: string;
-  name: string;
-  password: string;
-  cpf: number;
-  email: string;
-  avatar?: string;
-  occupation?: string;
-  isPolitician: boolean;
-}
 
 interface IUsersRepository {
   create(data: ICreateUserDTO): Promise<void>;

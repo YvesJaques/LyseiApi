@@ -3,10 +3,9 @@ interface ICreateUserDTO {
   name: string;
   password: string;
   cpf: number;
-  email: string;
-  avatar?: string;
-  occupation?: string;
-  isPolitician: boolean;
+  email: string;  
+  occupation?: string;  
+  isPolitician?: boolean
 }
 
 export { ICreateUserDTO };

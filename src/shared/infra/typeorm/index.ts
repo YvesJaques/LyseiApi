@@ -10,6 +10,6 @@ export default async (host = "database_lysei"): Promise<Connection> => {
         process.env.NODE_ENV === "test"
           ? "lysei_test"
           : defaultOptions.database,
-    })
+    }),
   );
 };
