@@ -26,6 +26,8 @@ services:
     depends_on:
       - database_lysei
 
+
+
 volumes:
   pgdata:
     driver: local
