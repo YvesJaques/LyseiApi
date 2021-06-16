@@ -4,8 +4,10 @@ interface ICreateUserDTO {
   password: string;
   cpf: string;
   email: string;
-  occupation?: string;
+  state: string;
+  city: string;
   isPolitician?: boolean;
+  occupation?: string;
 }
 
 export { ICreateUserDTO };

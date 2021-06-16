@@ -13,16 +13,25 @@ class User {
   cpf: string;
 
   @Column()
+  password: string;
+
+  @Column()
   email: string;
 
   @Column()
-  password: string;
+  avatar: string;
+
+  @Column()
+  state: string;
+
+  @Column()
+  city: string;
 
   @Column()
   isPolitician: boolean;
 
   @Column()
-  avatar: string;
+  occupation: string;
 
   @CreateDateColumn()
   created_at: Date;
