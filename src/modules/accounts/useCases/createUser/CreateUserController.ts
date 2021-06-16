@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
+
 import { CreateUserUseCase } from "./CreateUserUseCase";
 
 class CreateUserController {
@@ -13,7 +14,7 @@ class CreateUserController {
       email,
       password,
       cpf,
-      isPolitician
+      isPolitician,
     });
 
     return response.status(201).send();

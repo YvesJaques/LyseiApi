@@ -49,7 +49,7 @@ export class CreateUsers1623690274036 implements MigrationInterface {
           },
           {
             name: "isPolitician",
-            type: "varchar",
+            type: "boolean",
             default: false,
           },
           {
