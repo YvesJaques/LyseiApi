@@ -2,7 +2,7 @@ interface ICreateUserDTO {
   id?: string;
   name: string;
   password: string;
-  cpf: number;
+  cpf: string;
   email: string;  
   occupation?: string;  
   isPolitician?: boolean

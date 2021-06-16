@@ -15,7 +15,7 @@ describe("Create user", () => {
     const data = {
       name: "Test user",      
       password: "Test",
-      cpf: 33333333333,
+      cpf: "33333333333",
       email: "teste@teste.com"
     }
      
@@ -32,7 +32,7 @@ describe("Create user", () => {
     const data = {
       name: "Test user",      
       password: "Test",
-      cpf: 33333333333,
+      cpf: "33333333333",
       email: "teste@teste.com",
       isPolitician: true
     }

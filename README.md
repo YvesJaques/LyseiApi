@@ -6,10 +6,10 @@ O projeto se trata de uma aplicação/rede social para publicação de problemas
 # Cadastro de usuários civis
 
 **RF**
-- Deve ser possível cadastrar um novo usuário.
+- [x] Deve ser possível cadastrar um novo usuário. :checkmark:
 
 **RN**
-- Não deve ser possível cadastrar um novo usuário com um cpf já em uso.
+- Não deve ser possível cadastrar um novo usuário com um cpf ou email já em uso.
 
 
 # Cadastro de usuários políticos

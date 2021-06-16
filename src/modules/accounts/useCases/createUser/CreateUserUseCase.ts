@@ -19,7 +19,7 @@ class CreateUserUseCase {
     email,   
     isPolitician 
   }: ICreateUserDTO): Promise<void> {
-    const userAlreadyexists = await this.usersRepository.findByEmail(email);
+    const userAlreadyexists = await this.usersRepository.findByEmailOrCpf(email, cpf);
 
     if (userAlreadyexists) throw new AppError("User already exists!");
 
