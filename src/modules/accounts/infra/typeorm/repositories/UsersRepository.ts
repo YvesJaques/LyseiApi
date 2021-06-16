@@ -16,21 +16,25 @@ class UsersRepository implements IUsersRepository {
     cpf,
     email,
     password,
-    isPolitician    
+    isPolitician,
   }: ICreateUserDTO): Promise<void> {
     const user = this.repository.create({
       name,
       cpf,
       email,
       password,
-      isPolitician
+      isPolitician,
     });
 
     await this.repository.save(user);
   }
 
   async findByEmailOrCpf(email: string, cpf: string): Promise<User> {
-    const user = await this.repository.findOne({ email, cpf });
+    const user = await this.repository
+      .createQueryBuilder("user")
+      .where("user.email = :email", { email })
+      .orWhere("user.cpf = :cpf", { cpf })
+      .getOne();
     return user;
   }
 

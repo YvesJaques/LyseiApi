@@ -44,13 +44,13 @@ export class CreateUsers1623690274036 implements MigrationInterface {
           },
           {
             name: "isAdmin",
-            type: "varchar",   
-            default: false         
+            type: "varchar",
+            default: false,
           },
           {
             name: "isPolitician",
-            type: "varchar",       
-            default: false     
+            type: "varchar",
+            default: false,
           },
           {
             name: "created_at",
@@ -58,7 +58,7 @@ export class CreateUsers1623690274036 implements MigrationInterface {
             default: "now()",
           },
         ],
-      })
+      }),
     );
   }
 
