@@ -1,0 +1,11 @@
+import { ICreatePostDTO } from "../dtos/ICreatePostDTO";
+import { Post } from "../infra/typeorm/entities/Post";
+
+interface IPostsRepository {
+  findByCityAndState(city: string, state: string): Promise<Post>;
+  create(data: ICreatePostDTO): Promise<Post>;
+  findById(id: string): Promise<Post>;
+  updateSolved(id: string, solved: boolean): Promise<void>;
+}
+
+export { IPostsRepository };
