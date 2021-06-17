@@ -1,4 +1,5 @@
 import { ICreatePostDTO } from "@modules/posts/dtos/ICreatePostDTO";
+import { Post } from "@modules/posts/infra/typeorm/entities/Post";
 import { IPostsRepository } from "@modules/posts/repositories/IPostsRepository";
 import { inject, injectable } from "tsyringe";
 
@@ -22,8 +23,8 @@ class CreatePostUseCase {
     video,
     latitude,
     longitude,
-  }: ICreatePostDTO): Promise<void> {
-    await this.postsRepository.create({
+  }: ICreatePostDTO): Promise<Post> {
+    const post = await this.postsRepository.create({
       title,
       description,
       author_id,
@@ -37,6 +38,8 @@ class CreatePostUseCase {
       latitude,
       longitude,
     });
+
+    return post;
   }
 }
 
