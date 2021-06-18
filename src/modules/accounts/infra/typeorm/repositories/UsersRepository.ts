@@ -1,3 +1,4 @@
+import { IUpdateUserDTO } from "@modules/accounts/dtos/IUpdateUserDTO";
 import { getRepository, Repository } from "typeorm";
 
 import { ICreateUserDTO } from "../../../dtos/ICreateUserDTO";
@@ -33,6 +34,22 @@ class UsersRepository implements IUsersRepository {
     });
 
     await this.repository.save(user);
+  }
+
+  async update({
+    id,
+    name,
+    cpf,
+    email,
+    state,
+    city,
+    isPolitician,
+    occupation,
+  }: IUpdateUserDTO): Promise<void> {
+    this.repository.update(
+      { id },
+      { name, cpf, email, state, city, isPolitician, occupation },
+    );
   }
 
   async findByEmailOrCpf(email: string, cpf: string): Promise<User> {
