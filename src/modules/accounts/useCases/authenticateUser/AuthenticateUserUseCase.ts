@@ -1,13 +1,12 @@
+import auth from "@config/auth";
+import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
+import { IUsersTokensRepository } from "@modules/accounts/repositories/IUsersTokensRepository";
 import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
 import { inject, injectable } from "tsyringe";
 
-import { AppError } from "@shared/errors/AppError";
-import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
-
-import { IUsersTokensRepository } from "@modules/accounts/repositories/IUsersTokensRepository";
 import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
-import auth from "@config/auth";
+import { AppError } from "@shared/errors/AppError";
 
 interface IRequest {
   email: string;
