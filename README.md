@@ -19,15 +19,25 @@ O projeto se trata de uma aplicação/rede social para publicação de problemas
 
 **RN**
 - [x] Não deve ser possível cadastrar um novo político com um cpf ou email já em uso.
-- O cargo deve ser informado.
+- [] O cargo deve ser informado.
 
+# Atualização de dados
+
+**RF**
+- [] Deve ser possível consultar os dados de usuário
+- [] Deve ser possível atualizar dados de usuário
+- [] Deve ser possível mudar a senha
+
+**RN**
+- [] O usuário deve estar logado
+- [] O usuário só pode realizar estas operações na própria conta
 
 # Cadastro de problemas
 
 - [x] Deve ser possível criar publicações de problemas urbanos com texto
 - [x] Deve ser possível anexar imagens.
 - Deve ser possível anexar vídeos.
-- Deve ser possível curtir/descurtir publicações.
+- [x] Deve ser possível curtir/descurtir publicações.
 - Deve ser possível favoritar publicações.
 - Deve ser possível compartilhar publicações.
 
