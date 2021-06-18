@@ -1,7 +1,7 @@
 import { IPostsImagesRepository } from "@modules/posts/repositories/IPostsImagesRepository";
 import { getRepository, Repository } from "typeorm";
 
-import { PostImage } from "../infra/typeorm/entities/PostImage";
+import { PostImage } from "../entities/PostImage";
 
 class PostsImagesRepository implements IPostsImagesRepository {
   private repository: Repository<PostImage>;
