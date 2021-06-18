@@ -24,7 +24,7 @@ O projeto se trata de uma aplicação/rede social para publicação de problemas
 # Atualização de dados
 
 **RF**
-- [] Deve ser possível consultar os dados de usuário
+- [x] Deve ser possível consultar os dados de usuário
 - [] Deve ser possível atualizar dados de usuário
 - [] Deve ser possível mudar a senha
 
