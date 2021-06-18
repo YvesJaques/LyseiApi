@@ -52,6 +52,10 @@ class UsersRepository implements IUsersRepository {
     );
   }
 
+  async resetPassword(id: string, password: string): Promise<void> {
+    this.repository.update({ id }, { password });
+  }
+
   async findByEmailOrCpf(email: string, cpf: string): Promise<User> {
     const user = await this.repository
       .createQueryBuilder("user")
