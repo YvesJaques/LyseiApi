@@ -25,11 +25,11 @@ O projeto se trata de uma aplicação/rede social para publicação de problemas
 
 **RF**
 - [x] Deve ser possível consultar os dados de usuário
-- [] Deve ser possível atualizar dados de usuário
+- [x] Deve ser possível atualizar dados de usuário
 - [] Deve ser possível mudar a senha
 
 **RN**
-- [] O usuário deve estar logado
+- [x] O usuário deve estar logado
 - [] O usuário só pode realizar estas operações na própria conta
 
 # Cadastro de problemas
