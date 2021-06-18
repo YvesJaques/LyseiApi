@@ -1,8 +1,8 @@
+import { ICreatePostDTO } from "@modules/posts/dtos/ICreatePostDTO";
+import { IPostsRepository } from "@modules/posts/repositories/IPostsRepository";
 import { getRepository, Repository } from "typeorm";
 
-import { ICreatePostDTO } from "../dtos/ICreatePostDTO";
-import { Post } from "../infra/typeorm/entities/Post";
-import { IPostsRepository } from "./IPostsRepository";
+import { Post } from "../entities/Post";
 
 class PostsRepository implements IPostsRepository {
   private repository: Repository<Post>;
