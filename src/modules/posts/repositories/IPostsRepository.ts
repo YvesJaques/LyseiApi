@@ -6,6 +6,8 @@ interface IPostsRepository {
   create(data: ICreatePostDTO): Promise<Post>;
   findById(id: string): Promise<Post>;
   updateSolved(id: string, solved: boolean): Promise<void>;
+  likeById(id: string): Promise<number>;
+  disLikeById(id: string): Promise<number>;
 }
 
 export { IPostsRepository };

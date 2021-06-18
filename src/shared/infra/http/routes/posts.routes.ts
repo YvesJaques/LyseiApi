@@ -1,5 +1,6 @@
 import uploadConfig from "@config/upload";
 import { CreatePostController } from "@modules/posts/useCases/createPost/CreatePostController";
+import { LikePostController } from "@modules/posts/useCases/likePost/LikePostController";
 import { UploadPostImagesController } from "@modules/posts/useCases/uploadPostImages/UploadPostImagesController";
 import { Router } from "express";
 import multer from "multer";
@@ -10,6 +11,7 @@ const postsRoutes = Router();
 
 const createPostController = new CreatePostController();
 const uploadPostImagesController = new UploadPostImagesController();
+const likePostController = new LikePostController();
 
 postsRoutes.post("/", ensureAuthenticated, createPostController.handle);
 
@@ -20,6 +22,12 @@ postsRoutes.post(
   ensureAuthenticated,
   upload.array("images"),
   uploadPostImagesController.handle,
+);
+
+postsRoutes.patch(
+  "/like/:post_id",
+  ensureAuthenticated,
+  likePostController.handle,
 );
 
 export { postsRoutes };

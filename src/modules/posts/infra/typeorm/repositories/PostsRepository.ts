@@ -69,6 +69,38 @@ class PostsRepository implements IPostsRepository {
       .setParameters({ id })
       .execute();
   }
+
+  async likeById(id: string): Promise<number> {
+    const result = await this.repository
+      .createQueryBuilder()
+      .from(Post, "posts")
+      .update(Post)
+      .set({ likes: () => "likes + 1" })
+      .where("posts.id = :id", { id })
+      .returning("likes")
+      .updateEntity(true)
+      .execute();
+
+    const { likes } = result.raw[0];
+
+    return likes;
+  }
+
+  async disLikeById(id: string): Promise<number> {
+    const result = await this.repository
+      .createQueryBuilder()
+      .from(Post, "posts")
+      .update(Post)
+      .set({ likes: () => "likes - 1" })
+      .where("posts.id = :id", { id })
+      .returning("likes")
+      .updateEntity(true)
+      .execute();
+
+    const { likes } = result.raw[0];
+
+    return likes;
+  }
 }
 
 export { PostsRepository };

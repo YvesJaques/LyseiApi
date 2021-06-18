@@ -25,6 +25,11 @@ export class CreatePosts1623878532953 implements MigrationInterface {
             default: false,
           },
           {
+            name: "likes",
+            type: "int",
+            default: 0,
+          },
+          {
             name: "author_id",
             type: "uuid",
           },

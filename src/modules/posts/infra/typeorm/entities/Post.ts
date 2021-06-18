@@ -16,6 +16,9 @@ class Post {
   solved: boolean;
 
   @Column()
+  likes: number;
+
+  @Column()
   author_id: string;
 
   @Column()
