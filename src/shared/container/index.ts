@@ -4,10 +4,10 @@ import { UsersRepository } from "@modules/accounts/infra/typeorm/repositories/Us
 import { UsersTokensRepository } from "@modules/accounts/infra/typeorm/repositories/UsersTokensRepository";
 import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
 import { IUsersTokensRepository } from "@modules/accounts/repositories/IUsersTokensRepository";
+import { PostsImagesRepository } from "@modules/posts/infra/typeorm/repositories/PostsImagesRepository";
+import { PostsRepository } from "@modules/posts/infra/typeorm/repositories/PostsRepository";
 import { IPostsImagesRepository } from "@modules/posts/repositories/IPostsImagesRepository";
 import { IPostsRepository } from "@modules/posts/repositories/IPostsRepository";
-import { PostsImagesRepository } from "@modules/posts/repositories/PostsImagesRepository";
-import { PostsRepository } from "@modules/posts/repositories/PostsRepository";
 import { container } from "tsyringe";
 
 container.registerSingleton<IUsersRepository>(
