@@ -101,6 +101,11 @@ class PostsRepository implements IPostsRepository {
 
     return likes;
   }
+
+  async listPostsByStateAndCity(state: string, city: string): Promise<Post[]> {
+    const posts = await this.repository.find({ state, city });
+    return posts;
+  }
 }
 
 export { PostsRepository };
