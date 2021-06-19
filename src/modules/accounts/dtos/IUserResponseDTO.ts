@@ -2,7 +2,7 @@ interface IUserResponseDTO {
   name: string;
   cpf: string;
   email: string;
-  avatar: string;
+  avatar_url(): string;
   state: string;
   city: string;
   isPolitician: boolean;
