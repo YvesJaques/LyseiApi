@@ -43,7 +43,14 @@ O projeto se trata de uma aplicação/rede social para publicação de problemas
 
 **RN**
 - [x] O usuário deve estar logado na aplicação.
-- Problemas urbanos podem ser marcados como concluídos por usuários políticos.
+
+# Solução de problemas
+
+- [x] Problemas urbanos podem ser marcados como concluídos.
+
+**RN**
+- [x] O usuário deve estar logado na aplicação.
+- [x] O usuário deve ser políticos.
 
 # Listagem de problemas
 
