@@ -9,6 +9,7 @@ interface IFiles {
 
 class UploadPostImagesController {
   async handle(request: Request, response: Response): Promise<Response> {
+    const { id: user_id } = request.user;
     const { id } = request.params;
     const images = request.files as IFiles[];
 
@@ -17,6 +18,7 @@ class UploadPostImagesController {
     const images_name = images.map(file => file.filename);
 
     await uploadPostImagesUseCase.execute({
+      user_id,
       post_id: id,
       images_name,
     });
