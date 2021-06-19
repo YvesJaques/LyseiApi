@@ -45,7 +45,6 @@ O projeto se trata de uma aplicação/rede social para publicação de problemas
 
 - [x] Deve ser possível criar publicações de problemas urbanos com texto
 - [x] Deve ser possível anexar imagens.
-- Deve ser possível anexar vídeos.
 - [x] Deve ser possível curtir/descurtir publicações.
 
 **RN**
