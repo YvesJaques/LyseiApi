@@ -29,6 +29,9 @@ class CreateUserUseCase {
 
     if (userAlreadyexists) throw new AppError("User already exists!");
 
+    if (isPolitician && (occupation === "" || occupation === null))
+      throw new AppError("Occupation not entered for politician user!");
+
     const passwordHash = await hash(password, 8);
 
     await this.usersRepository.create({
