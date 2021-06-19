@@ -67,6 +67,8 @@ class AuthenticateUserUseCase {
       expires_refresh_token_days,
     );
 
+    await this.usersTokensRepository.deleteByUserId(user.id);
+
     await this.usersTokensRepository.create({
       user_id: user.id,
       refresh_token,
