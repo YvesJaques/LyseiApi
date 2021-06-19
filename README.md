@@ -12,6 +12,15 @@ O projeto se trata de uma aplicação/rede social para publicação de problemas
 - [x] Não deve ser possível cadastrar um novo usuário com um cpf ou email já em uso.
 
 
+# Foto de perfil
+
+**RF**
+- [x] Deve ser possível fazer upload da foto de perfil.
+
+**RN**
+- [x] O usuário deve estar logado.
+
+
 # Cadastro de usuários políticos
 
 **RF**
@@ -38,8 +47,6 @@ O projeto se trata de uma aplicação/rede social para publicação de problemas
 - [x] Deve ser possível anexar imagens.
 - Deve ser possível anexar vídeos.
 - [x] Deve ser possível curtir/descurtir publicações.
-- Deve ser possível favoritar publicações.
-- Deve ser possível compartilhar publicações.
 
 **RN**
 - [x] O usuário deve estar logado na aplicação.
