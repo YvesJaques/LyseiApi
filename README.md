@@ -44,3 +44,10 @@ O projeto se trata de uma aplicação/rede social para publicação de problemas
 **RN**
 - [x] O usuário deve estar logado na aplicação.
 - Problemas urbanos podem ser marcados como concluídos por usuários políticos.
+
+# Listagem de problemas
+
+- [x] Deve ser possível listar publicações filtradas por cidade e estado
+
+**RN**
+- [x] O usuário deve estar logado na aplicação.
