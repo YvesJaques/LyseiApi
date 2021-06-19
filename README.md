@@ -28,7 +28,7 @@ O projeto se trata de uma aplicação/rede social para publicação de problemas
 
 **RN**
 - [x] Não deve ser possível cadastrar um novo político com um cpf ou email já em uso.
-- [] O cargo deve ser informado.
+- [x] O cargo deve ser informado.
 
 # Atualização de dados
 
