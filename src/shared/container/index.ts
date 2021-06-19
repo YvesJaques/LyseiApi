@@ -4,9 +4,11 @@ import { UsersRepository } from "@modules/accounts/infra/typeorm/repositories/Us
 import { UsersTokensRepository } from "@modules/accounts/infra/typeorm/repositories/UsersTokensRepository";
 import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
 import { IUsersTokensRepository } from "@modules/accounts/repositories/IUsersTokensRepository";
+import { PostConclusionHistoryRepository } from "@modules/posts/infra/typeorm/repositories/PostConclusionHistoryRepository";
 import { PostLikesRepository } from "@modules/posts/infra/typeorm/repositories/PostLikesRepository";
 import { PostsImagesRepository } from "@modules/posts/infra/typeorm/repositories/PostsImagesRepository";
 import { PostsRepository } from "@modules/posts/infra/typeorm/repositories/PostsRepository";
+import { IPostConclusionHistoryRepository } from "@modules/posts/repositories/IPostConclusionHistory";
 import { IPostLikesRepository } from "@modules/posts/repositories/IPostLikesRepository";
 import { IPostsImagesRepository } from "@modules/posts/repositories/IPostsImagesRepository";
 import { IPostsRepository } from "@modules/posts/repositories/IPostsRepository";
@@ -35,4 +37,9 @@ container.registerSingleton<IPostsImagesRepository>(
 container.registerSingleton<IPostLikesRepository>(
   "PostLikesRepository",
   PostLikesRepository,
+);
+
+container.registerSingleton<IPostConclusionHistoryRepository>(
+  "PostConclusionHistoryRepository",
+  PostConclusionHistoryRepository,
 );
