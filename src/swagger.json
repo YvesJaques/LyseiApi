@@ -489,8 +489,8 @@
         "/posts/list": {
             "post": {
                 "tags": ["Post"],
-                "summary": "List posts",
-                "description": "List posts by city and state",
+                "summary": "List posts by city and state",
+                "description": "User must be authenticated",
                 "security": [
                     { "bearerAuth": []}
                 ],
