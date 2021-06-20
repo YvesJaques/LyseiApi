@@ -1,0 +1,41 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:  
+  build:    
+    runs-on: ubuntu-latest
+    
+    steps:      
+      - uses: actions/checkout@v2
+      
+      - name: Setup Nodejs
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+          
+      - name: Instal Dependencies
+        run: yarn
+      
+      - name: Build
+        run: yarn build
+        
+      - uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}          
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_KEY }}
+          source: "., !node_modules"
+          target: "~/app/LyseiApi"
