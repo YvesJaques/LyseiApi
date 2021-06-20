@@ -193,62 +193,7 @@
                         }
                     }
                 }
-            },     
-            "get": {
-                "tags": ["User"],
-                "summary": "Show user profile",
-                "description": "User must be authenticated. Can only be accessed by the actual user",
-                "security": [
-                    { "bearerAuth": []}
-                ],               
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "name": {
-                                            "type": "string",
-                                            "required": true
-                                        },
-                                        "email": {
-                                            "type": "string",
-                                            "required": true
-                                        }
-                                    },
-                                    "example": {
-                                        "name": "Teste",
-                                        "cpf": "00000000000",
-                                        "email": "teste@teste.com",
-                                        "avatar": "9efsfsdgcd0377b7ceb9bb726f12e0b-1564313132932.jpeg",
-                                        "avatar_url": "https://api-lysei.s3.sa-east-1.amazonaws.com/avatar/9e456416717ccd039b7ceb9bb726f12e0b-15146543132932.jpeg",
-                                        "state": "AM",
-                                        "city": "Taubaté",
-                                        "isPolitician": false,
-                                        "occupation": null,
-                                        "created_at": "2021-06-20T04:53:51.095Z"
-                                    }                                
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Invalid token!",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",                                    
-                                    "example": {
-                                        "error": "Invalid token!"
-                                    }                                    
-                                }
-                            }
-                        }
-                    }
-                }
-            },
+            },             
             "patch": {
                 "tags": ["User"],
                 "summary": "Update user profile",
@@ -322,6 +267,63 @@
                     }
                 }
             }
+        },
+        "/users/profile": {
+            "get": {
+                "tags": ["User"],
+                "summary": "Show user profile",
+                "description": "User must be authenticated. Can only be accessed by the actual user",
+                "security": [
+                    { "bearerAuth": []}
+                ],               
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "required": true
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "required": true
+                                        }
+                                    },
+                                    "example": {
+                                        "name": "Teste",
+                                        "cpf": "00000000000",
+                                        "email": "teste@teste.com",
+                                        "avatar": "9efsfsdgcd0377b7ceb9bb726f12e0b-1564313132932.jpeg",
+                                        "avatar_url": "https://api-lysei.s3.sa-east-1.amazonaws.com/avatar/9e456416717ccd039b7ceb9bb726f12e0b-15146543132932.jpeg",
+                                        "state": "AM",
+                                        "city": "Taubaté",
+                                        "isPolitician": false,
+                                        "occupation": null,
+                                        "created_at": "2021-06-20T04:53:51.095Z"
+                                    }                                
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Invalid token!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                    
+                                    "example": {
+                                        "error": "Invalid token!"
+                                    }                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            } 
         },
         "/users/resetPassword": {
             "patch": {
