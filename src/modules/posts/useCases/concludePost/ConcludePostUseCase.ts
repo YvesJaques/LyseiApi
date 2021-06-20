@@ -31,12 +31,16 @@ class ConcludePostUseCase {
     ).solved;
 
     if (alreadyConcluded) {
-      this.postConclusionHistoryRepository.create(user_id, post_id, false);
-      this.postsRepository.updateSolved(post_id, false);
+      await this.postConclusionHistoryRepository.create(
+        user_id,
+        post_id,
+        false,
+      );
+      await this.postsRepository.updateSolved(post_id, false);
       return false;
     }
-    this.postConclusionHistoryRepository.create(user_id, post_id, true);
-    this.postsRepository.updateSolved(post_id, true);
+    await this.postConclusionHistoryRepository.create(user_id, post_id, true);
+    await this.postsRepository.updateSolved(post_id, true);
     return true;
   }
 }
