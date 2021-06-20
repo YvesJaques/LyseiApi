@@ -1,6 +1,5 @@
 import { IPostsImagesRepository } from "@modules/posts/repositories/IPostsImagesRepository";
 import { IPostsRepository } from "@modules/posts/repositories/IPostsRepository";
-import { deleteFile } from "@utils/file";
 import { inject, injectable } from "tsyringe";
 
 import { IStorageProvider } from "@shared/container/providers/StorageProvider/IStorageProvider";
