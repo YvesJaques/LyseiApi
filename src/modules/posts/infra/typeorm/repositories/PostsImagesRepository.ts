@@ -21,9 +21,24 @@ class PostsImagesRepository implements IPostsImagesRepository {
     return postImage;
   }
 
-  async findByPostId(post_id: string): Promise<PostImage[]> {
-    const images = await this.repository.find({ post_id });
-    return images;
+  async findByPostId(post_id: string): Promise<string[]> {
+    const postImages = await this.repository.find({ post_id });
+
+    const imagesUrls: string[] = [];
+
+    if (process.env.disk === "local") {
+      postImages.forEach(image => {
+        imagesUrls.push(`${process.env.APP_API_URL}/posts/${image.image_name}`);
+      });
+    } else if (process.env.disk === "s3") {
+      postImages.forEach(image => {
+        imagesUrls.push(
+          `${process.env.AWS_BUCKET_URL}/posts/${image.image_name}`,
+        );
+      });
+    }
+
+    return imagesUrls;
   }
 
   async deleteByPostId(post_id: string): Promise<void> {
