@@ -23,13 +23,14 @@ class UpdateUserProfileUseCase {
   }: IUpdateUserDTO): Promise<void> {
     const user = await this.usersRepository.findById(id);
 
-    const userAlreadyexists = await this.usersRepository.findByEmailOrCpf(
-      email,
-      cpf,
-    );
+    const cpfAlreadyexists = await this.usersRepository.findByCpf(cpf);
+    const emailAlreadyexists = await this.usersRepository.findByEmail(email);
 
-    if ((user.email !== email || user.cpf !== cpf) && userAlreadyexists)
-      throw new AppError("Email or CPF already in use!");
+    if (user.email !== email && emailAlreadyexists)
+      throw new AppError("Email already in use!");
+
+    if (user.cpf !== cpf && cpfAlreadyexists)
+      throw new AppError("Cpf already in use!");
 
     await this.usersRepository.update({
       id,
