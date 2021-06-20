@@ -36,7 +36,7 @@ class UploadPostImagesUseCase {
     if (previousImages) {
       await this.postsImagesRepository.deleteByPostId(post_id);
       previousImages.forEach(async image => {
-        await deleteFile(`./tmp/posts/${image.image_name}`);
+        await this.storageProvider.delete(image, "posts");
       });
     }
 
