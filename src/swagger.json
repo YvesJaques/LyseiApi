@@ -154,7 +154,7 @@
                                         "type": "string",
                                         "required": false
                                     },
-                                    "Occupation": {
+                                    "occupation": {
                                         "type": "string",
                                         "required": false
                                     }
@@ -165,7 +165,9 @@
                                     "cpf": "000000000000",
                                     "email": "test@test.com",
                                     "state": "AM",
-                                    "city": "Taubaté"
+                                    "city": "Taubaté",
+                                    "isPolitician": "false",
+                                    "occupation": "teste"
                                 }
                             }
                         }
@@ -378,7 +380,7 @@
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "images": {
+                                    "avatar": {
                                         "type": "array",
                                         "items": {
                                             "type": "string",
@@ -409,7 +411,448 @@
                     }
                 }
             }
-        }   
+        },
+        "/posts": {
+            "post": {
+                "tags": ["Post"],
+                "summary": "Create a post",
+                "description": "Create a new post",
+                "security": [
+                    { "bearerAuth": []}
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "state": { 
+                                        "type": "string"
+                                    },
+                                    "city": { 
+                                        "type": "string"
+                                    },
+                                    "district" :{ 
+                                        "type": "string"
+                                    },
+                                    "street" :{ 
+                                        "type": "string"
+                                    },
+                                    "number" :{ 
+                                        "type": "number"
+                                    },
+                                    "picture" :{ 
+                                        "type": "string"
+                                    },
+                                    "video" :{ 
+                                        "type": "string"
+                                    },
+                                    "latitude" :{ 
+                                        "type": "number"
+                                    },
+                                    "longitude" :{ 
+                                        "type": "number"
+                                    }
+                                },
+                                "example": {
+                                    "title": "Buraco na rua",
+                                    "description": "teste",
+                                    "state": "SP",
+                                    "city": "Taubaté",
+                                    "district": "Jaraguá",
+                                    "street": "João Monteiro de Franca ",
+                                    "number": 400,
+                                    "latitude": 1.1,
+                                    "longitude": 1.1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    }              
+                }
+            }
+        },
+        "/posts/list": {
+            "post": {
+                "tags": ["Post"],
+                "summary": "List posts",
+                "description": "List posts by city and state",
+                "security": [
+                    { "bearerAuth": []}
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "state": {
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "city": {
+                                        "type": "string",
+                                        "required": true
+                                    }
+                                },
+                                "example": {
+                                    "state": "AM",
+                                    "city": "Taubaté"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                    
+                                    "example": [                                   
+                                        {
+                                        "id": "277006a7-ddc1-4ce6-8819-64422e21e7d1",
+                                        "title": "Buraco na rua",
+                                        "description": "teste",
+                                        "solved": false,
+                                        "likes": 0,
+                                        "author_id": "4470baa7-1195-402e-b960-7aad643e47c8",
+                                        "state": "AM",
+                                        "city": "Taubaté",
+                                        "district": "Rosário",
+                                        "street": "Francisco Torres",
+                                        "number": 400,
+                                        "picture": null,
+                                        "video": null,
+                                        "latitude": 1.1,
+                                        "longitude": 1.1,
+                                        "created_at": "2021-06-20T06:24:11.002Z"
+                                        },
+                                        {
+                                        "id": "e6825801-b2e7-4d68-bee7-d49bdab6868c",
+                                        "title": "Escola em decadência",
+                                        "description": "Escola antiga em decadência",
+                                        "solved": false,
+                                        "likes": 0,
+                                        "author_id": "4470baa7-1195-402e-b960-7aad643e47c8",
+                                        "state": "AM",
+                                        "city": "Taubaté",
+                                        "district": "Centro",
+                                        "street": "Rua do Acampamento",
+                                        "number": 900,
+                                        "picture": null,
+                                        "video": null,
+                                        "latitude": 56.3,
+                                        "longitude": 10043.7,
+                                        "created_at": "2021-06-20T16:26:11.012Z"
+                                        }
+                                    ]                                    
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+
+                    }
+                }
+            }
+        },
+        "/posts/like/:post_id": {
+            "patch": {
+                "tags": ["Post"],
+                "summary": "Like/Dislike a post",
+                "description": "User must be authenticated",
+                "security": [
+                    { "bearerAuth": []}
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "post_id",
+                        "schema": {                        
+                            "type": "string",
+                            "format": "uuid"
+                        },                      
+                        "required": "true"
+                    }
+                ],                
+                "responses": {
+                    "200": {
+                        "description": "Updated"                   
+                    },
+                    "401": {
+                        "description": "Invalid token!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                    
+                                    "example": {
+                                        "error": "Invalid token!"
+                                    }                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/posts/conclude/:post_id": {
+            "patch": {
+                "tags": ["Post"],
+                "summary": "Conclude/unconclude a post",
+                "description": "User must be authenticated and a politician",
+                "security": [
+                    { "bearerAuth": []}
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "post_id",
+                        "schema": {                        
+                            "type": "string",
+                            "format": "uuid"
+                        },                      
+                        "required": "true"
+                    }
+                ],                
+                "responses": {
+                    "200": {
+                        "description": "Updated"                   
+                    },
+                    "401": {
+                        "description": "Invalid token!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                    
+                                    "example": {
+                                        "error": "Invalid token!"
+                                    }                                    
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "User is not a politician!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                    
+                                    "example": {
+                                        "error": "User is not a politician!"
+                                    }                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/posts/images/:post_id": {
+            "get": {
+                "tags": ["Post"],
+                "summary": "List images from a specific post",
+                "description": "User must be authenticated",
+                "security": [
+                    { "bearerAuth": []}
+                ], 
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "post_id",
+                        "schema": {                        
+                            "type": "string",
+                            "format": "uuid"
+                        },                      
+                        "required": "true"
+                    }
+                ],               
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",                                   
+                                    "example": [
+                                        "localhost:3333/posts/4070d72179e4b465d53e0af265ac1969.png",
+                                        "localhost:3333/posts/7fe18c53eb67ad0c1f6cc01a0f8ba02c.jpeg"
+                                      ]                                
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Invalid token!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                    
+                                    "example": {
+                                        "error": "Invalid token!"
+                                    }                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Post"],
+                "summary": "Update post images",
+                "description": "User must be authenticated and author of the post",
+                "security": [
+                    { "bearerAuth": []}
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "post_id",
+                        "schema": {                        
+                            "type": "string",
+                            "format": "uuid"
+                        },                      
+                        "required": "true"
+                    }
+                ], 
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "images": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"                   
+                    },
+                    "401": {
+                        "description": "Invalid token!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                    
+                                    "example": {
+                                        "error": "Invalid token!"
+                                    }                                    
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "User is not the author of the post!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                    
+                                    "example": {
+                                        "error": "User is not the author of the post!"
+                                    }                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/posts/:post_id": {
+            "get": {
+                "tags": ["Post"],
+                "summary": "Show info from a specific post",
+                "description": "User must be authenticated",
+                "security": [
+                    { "bearerAuth": []}
+                ], 
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "post_id",
+                        "schema": {                        
+                            "type": "string",
+                            "format": "uuid"
+                        },                      
+                        "required": "true"
+                    }
+                ],               
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "required": true
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "required": true
+                                        }
+                                    },
+                                    "example": {
+                                        "id": "d3a259c9-9dc3-419a-9b17-018650a9f024",
+                                        "title": "Buraco na rua",
+                                        "description": "teste",
+                                        "solved": false,
+                                        "likes": 0,
+                                        "author_id": "f5e65aaf-3c4d-4b01-a9cd-31c0c05a2aee",
+                                        "state": "AM",
+                                        "city": "Taubaté",
+                                        "district": "Rosário",
+                                        "street": "Francisco Torres",
+                                        "number": 400,
+                                        "picture": null,
+                                        "video": null,
+                                        "latitude": 1.1,
+                                        "longitude": 1.1,
+                                        "created_at": "2021-06-19T21:04:58.005Z"
+                                    }                                
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Invalid token!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                    
+                                    "example": {
+                                        "error": "Invalid token!"
+                                    }                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     },
     "definitions": {
 
