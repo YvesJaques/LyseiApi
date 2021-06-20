@@ -1,0 +1,426 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Lysei Documentation",
+        "description": "Essa é uma API para uso do LyseiApp",
+        "version": "1.0.0",
+        "contact": {
+            "email":"ymoraisjaques@gmail.com"
+        }
+    },
+    "paths": {
+        "/sessions": {
+            "post": {
+                "tags": ["Session"],
+                "summary": "User authentication",
+                "description": "User authentication",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {                        
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjQxNjc2NjQsImV4cCI6MTYyNDE4MjA2NCwic3ViIjoiNDQ3MGJhYTctMTE5NS00MDJlLWI5NjAtN2FhZDY0M2U0N2M4In0.oYez1gZkvATDwnKKqsBMcmcTwgqJsvSjY-UpeFjTJsM",
+                                        "user": {
+                                          "name": "Teste",
+                                          "email": "teste@teste.com"
+                                        },
+                                        "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Inltb3JhaXNqYXF1ZXNAZ21haWwuY29tIiwiaWF0IjoxNjI0MTY3NjY0LCJleHAiOjE2MjQxNzQ4NjQsInN1YiI6IjQ0NzBiYWE3LTExOTUtNDAyZS1iOTYwLTdhYWQ2NDNlNDdjOCJ9.2LXgksxLpnzqwdg-VyqIJFpiMlqTSaaXIzBTqV3tSk0"
+                                    }                                
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Email or password incorrect"
+                    }
+                }
+            }
+        },
+        "/refresh-token": {
+            "post": {
+                "tags": ["Refresh-token"],
+                "summary": "User authentication refresh-token",
+                "description": "Refresh-token for user session renovation",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "refresh-token": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Inltb3JhaXNqYXF1ZXNAZ21haWwuY29tIiwiaWF0IjoxNjI0MTIwMTQ1LCJleHAiOjE2MjQxMjczNDUsInN1YiI6ImY1ZTY1YWFmLTNjNGQtNGIwMS1hOWNkLTMxYzBjMDVhMmFlZSJ9.S8SY_CC5qxYHHv_VEDWD5BVI4KyEH4cTkI_x_HLZEkY"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {                        
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Inltb3JhaXNqYXF1ZXNAZ21haWwuY29tIiwiaWF0IjoxNjI0MTY3NzYyLCJleHAiOjE2MjQxNzQ5NjIsInN1YiI6IjQ0NzBiYWE3LTExOTUtNDAyZS1iOTYwLTdhYWQ2NDNlNDdjOCJ9.MXEz7deVUiJJ06UfCJGW3JC9Zn1VAzfs85LJS2JFyew",
+                                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjQxNjc3NjIsImV4cCI6MTYyNDE4MjE2Miwic3ViIjoiNDQ3MGJhYTctMTE5NS00MDJlLWI5NjAtN2FhZDY0M2U0N2M4In0.4iVn3v9IiNpREYL9QpPkQ97rHYDcHFiTpjAgpLgM8zU"
+                                    }                                
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Refresh Token does not exist!"
+                    }
+                }
+            }
+        },
+        "/users": {
+            "post": {
+                "tags": ["User"],
+                "summary": "Create a user",
+                "description": "Creates a new user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "cpf": {
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "state": {
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "city": {
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "isPolitician": {
+                                        "type": "string",
+                                        "required": false
+                                    },
+                                    "Occupation": {
+                                        "type": "string",
+                                        "required": false
+                                    }
+                                },
+                                "example": {
+                                    "name": "Test",	
+                                    "password": "1234",
+                                    "cpf": "000000000000",
+                                    "email": "test@test.com",
+                                    "state": "AM",
+                                    "city": "Taubaté"
+                                }
+                            }
+                        }
+                    },
+                    "required": "true",
+                    "description": "Required fields"
+                },
+                "responses": {
+                    "201": {
+                        "description": "User created"                   
+                    },
+                    "400": {
+                        "description": "User already exists!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                    
+                                    "example": {
+                                        "error": "User already exists!"
+                                    }                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            },     
+            "get": {
+                "tags": ["User"],
+                "summary": "Show user profile",
+                "description": "User must be authenticated. Can only be accessed by the actual user",
+                "security": [
+                    { "bearerAuth": []}
+                ],               
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "required": true
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "required": true
+                                        }
+                                    },
+                                    "example": {
+                                        "name": "Teste",
+                                        "cpf": "00000000000",
+                                        "email": "teste@teste.com",
+                                        "avatar": "9efsfsdgcd0377b7ceb9bb726f12e0b-1564313132932.jpeg",
+                                        "avatar_url": "https://api-lysei.s3.sa-east-1.amazonaws.com/avatar/9e456416717ccd039b7ceb9bb726f12e0b-15146543132932.jpeg",
+                                        "state": "AM",
+                                        "city": "Taubaté",
+                                        "isPolitician": false,
+                                        "occupation": null,
+                                        "created_at": "2021-06-20T04:53:51.095Z"
+                                    }                                
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Invalid token!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                    
+                                    "example": {
+                                        "error": "Invalid token!"
+                                    }                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": ["User"],
+                "summary": "Update user profile",
+                "description": "User must be authenticated",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "required": true
+                                    },                                  
+                                    "cpf": {
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "state": {
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "city": {
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "isPolitician": {
+                                        "type": "string",
+                                        "required": false,
+                                        "default": false
+                                    },
+                                    "Occupation": {
+                                        "type": "string",
+                                        "required": false,
+                                        "default": null
+                                    }
+                                },
+                                "example": {
+                                    "name": "Test",
+                                    "cpf": "000000000000",
+                                    "email": "test@test.com",
+                                    "state": "AM",
+                                    "city": "Taubaté",
+                                    "isPolitician": false,
+                                    "occupation": null
+                                }
+                            }
+                        }
+                    }                    
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"                   
+                    },
+                    "400": {
+                        "description": "Email or CPF already in use!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                    
+                                    "example": {
+                                        "error": "Email or CPF already in use!"
+                                    }                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/resetPassword": {
+            "patch": {
+                "tags": ["User"],
+                "summary": "Update user password",
+                "description": "User must be authenticated",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "password": {
+                                        "type": "string",
+                                        "required": true
+                                    }
+                                },
+                                "example": {
+                                    "password": "Test"                                   
+                                }
+                            }
+                        }
+                    }                    
+                },
+                "responses": {
+                    "200": {
+                        "description": "Updated"                   
+                    },
+                    "401": {
+                        "description": "Invalid token!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                    
+                                    "example": {
+                                        "error": "Invalid token!"
+                                    }                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/avatar": {
+            "patch": {
+                "tags": ["User"],
+                "summary": "Update user avatar",
+                "description": "User must be authenticated",
+                "security": [
+                    { "bearerAuth": []}
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "images": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "No Content"                   
+                    },
+                    "401": {
+                        "description": "Invalid token!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                    
+                                    "example": {
+                                        "error": "Invalid token!"
+                                    }                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }   
+    },
+    "definitions": {
+
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}
