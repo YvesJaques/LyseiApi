@@ -58,7 +58,7 @@ O projeto se trata de uma aplicação/rede social para publicação de problemas
 
 **RN**
 - [x] O usuário deve estar logado na aplicação.
-- [x] O usuário deve ser políticos.
+- [x] O usuário deve ser político.
 
 # Listagem de problemas
 
