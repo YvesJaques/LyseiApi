@@ -3,7 +3,6 @@ interface IUpdateUserDTO {
   name: string;
   cpf: string;
   email: string;
-  avatar: string;
   state: string;
   city: string;
   isPolitician: boolean;

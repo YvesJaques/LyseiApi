@@ -41,7 +41,6 @@ class UsersRepository implements IUsersRepository {
     name,
     cpf,
     email,
-    avatar,
     state,
     city,
     isPolitician,
@@ -49,7 +48,7 @@ class UsersRepository implements IUsersRepository {
   }: IUpdateUserDTO): Promise<void> {
     this.repository.update(
       { id },
-      { name, cpf, email, avatar, state, city, isPolitician, occupation },
+      { name, cpf, email, state, city, isPolitician, occupation },
     );
   }
 
