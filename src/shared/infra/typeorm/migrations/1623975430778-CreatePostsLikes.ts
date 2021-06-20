@@ -41,7 +41,6 @@ export class CreatePostsLikes1623975430778 implements MigrationInterface {
         referencedColumnNames: ["id"],
         columnNames: ["user_id"],
         onDelete: "CASCADE",
-        onUpdate: "CASCADE",
       }),
     );
 
@@ -53,7 +52,6 @@ export class CreatePostsLikes1623975430778 implements MigrationInterface {
         referencedColumnNames: ["id"],
         columnNames: ["post_id"],
         onDelete: "CASCADE",
-        onUpdate: "CASCADE",
       }),
     );
   }
