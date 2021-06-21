@@ -8,6 +8,7 @@ interface IUsersRepository {
   resetPassword(id: string, password: string): Promise<void>;
   findByEmailOrCpf(email: string, cpf: string): Promise<User>;
   findByEmail(email: string): Promise<User>;
+  findByCpf(cpf: string): Promise<User>;
   findById(id: string): Promise<User>;
 }
 
