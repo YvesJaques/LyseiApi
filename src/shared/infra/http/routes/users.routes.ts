@@ -4,6 +4,7 @@ import { ProfileUserController } from "@modules/accounts/useCases/profileUser/Pr
 import { ResetUserPasswordController } from "@modules/accounts/useCases/resetUserPassword/ResetUserPasswordController";
 import { UpdateUserAvatarController } from "@modules/accounts/useCases/updateUserAvatar/UpdateUserAvatarController";
 import { UpdateUserProfileController } from "@modules/accounts/useCases/updateUserProfile/UpdateUserProfileController";
+import { ViewUserProfileController } from "@modules/accounts/useCases/viewUserProfile/ViewUserProfileController";
 import { Router } from "express";
 import multer from "multer";
 
@@ -18,10 +19,17 @@ const profileUserController = new ProfileUserController();
 const updateUserProfileUseCase = new UpdateUserProfileController();
 const resetUserPasswordController = new ResetUserPasswordController();
 const updateUserAvatarController = new UpdateUserAvatarController();
+const viewUserProfileController = new ViewUserProfileController();
 
 usersRoutes.post("/", createUserController.handle);
 
 usersRoutes.get("/profile", ensureAuthenticated, profileUserController.handle);
+
+usersRoutes.get(
+  "/:user_id",
+  ensureAuthenticated,
+  viewUserProfileController.handle,
+);
 
 usersRoutes.patch(
   "/avatar",
