@@ -1,10 +1,11 @@
-import { DayjsDateProvider } from "@shared/container/providers/DateProvider/implementations/DayjsDateProvider";
-import { AppError } from "@shared/errors/AppError";
 import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
 import { UsersRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersRepositoryInMemory";
 import { UsersTokensRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersTokensRepositoryInMemory";
-import { CreateUserUseCase } from "../createUser/CreateUserUseCase";
 
+import { DayjsDateProvider } from "@shared/container/providers/DateProvider/implementations/DayjsDateProvider";
+import { AppError } from "@shared/errors/AppError";
+
+import { CreateUserUseCase } from "../createUser/CreateUserUseCase";
 import { AuthenticateUserUseCase } from "./AuthenticateUserUseCase";
 
 let authenticateUserUseCase: AuthenticateUserUseCase;
@@ -27,11 +28,13 @@ describe("Authenticate User", () => {
   });
 
   it("should be able to authenticate an user", async () => {
-    const user: ICreateUserDTO = {      
+    const user: ICreateUserDTO = {
       email: "user@test.com",
       cpf: "1111111111",
       password: "1234",
       name: "User Test",
+      state: "AM",
+      city: "Taquatinga",
     };
     await createUserUseCase.execute(user);
 
@@ -58,6 +61,8 @@ describe("Authenticate User", () => {
       cpf: "3333333333",
       password: "1234",
       name: "User Test",
+      state: "AM",
+      city: "Taquatinga",
     };
     await createUserUseCase.execute(user);
 

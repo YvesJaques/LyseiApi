@@ -19,6 +19,8 @@ describe("Create user", () => {
       password: "Test",
       cpf: "33333333333",
       email: "teste@teste.com",
+      state: "AM",
+      city: "Tacapé",
     };
 
     await createUserUseCase.execute(data);
@@ -36,7 +38,10 @@ describe("Create user", () => {
       password: "Test",
       cpf: "33333333333",
       email: "teste@teste.com",
+      state: "AM",
+      city: "Tacapé",
       isPolitician: true,
+      occupation: "Vereador",
     };
 
     await createUserUseCase.execute(data);
@@ -46,7 +51,26 @@ describe("Create user", () => {
     expect(user).toHaveProperty("id");
     expect(user).toHaveProperty("email", data.email);
     expect(user).toHaveProperty("cpf", data.cpf);
-    expect(user).toHaveProperty("isPolitician", true);
+    expect(user).toHaveProperty("email", data.email);
+    expect(user).toHaveProperty("state", data.state);
+    expect(user).toHaveProperty("isPolitician", data.isPolitician);
+    expect(user).toHaveProperty("occupation", data.occupation);
+  });
+
+  it("Should not be able to create a politician user with no occupation", async () => {
+    const data = {
+      name: "Test user",
+      password: "Test",
+      cpf: "33333333333",
+      email: "teste@teste.com",
+      state: "AM",
+      city: "Tacapé",
+      isPolitician: true,
+    };
+
+    await expect(createUserUseCase.execute(data)).rejects.toEqual(
+      new AppError("Occupation not entered for politician user!"),
+    );
   });
 
   it("Should not able to create a new user with an email already in use", async () => {
@@ -55,6 +79,8 @@ describe("Create user", () => {
       password: "Test",
       cpf: "33333333333",
       email: "teste@teste.com",
+      state: "AM",
+      city: "Tacapé",
     });
 
     await expect(
@@ -63,6 +89,8 @@ describe("Create user", () => {
         password: "Test",
         cpf: "222222222",
         email: "teste@teste.com",
+        state: "RS",
+        city: "Porto Alegre",
       }),
     ).rejects.toEqual(new AppError("User already exists!"));
   });
@@ -73,6 +101,8 @@ describe("Create user", () => {
       password: "Test",
       cpf: "33333333333",
       email: "teste@teste.com",
+      state: "PA",
+      city: "Taquatinga",
     });
 
     await expect(
@@ -81,6 +111,8 @@ describe("Create user", () => {
         password: "Test",
         cpf: "33333333333",
         email: "teste2@teste.com",
+        state: "Vvardenfell",
+        city: "Balmora",
       }),
     ).rejects.toEqual(new AppError("User already exists!"));
   });
