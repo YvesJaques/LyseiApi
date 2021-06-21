@@ -10,10 +10,12 @@ class ListPostsUseCase {
   ) {}
 
   async execute(state: string, city: string): Promise<Post[]> {
-    const posts = await this.postsRepository.listPostsByStateAndCity(
-      state,
-      city,
-    );
+    let posts: Post[] = [];
+
+    if (state === "" && city === "")
+      posts = await this.postsRepository.listPosts();
+    else
+      posts = await this.postsRepository.listPostsByStateAndCity(state, city);
 
     return posts;
   }
