@@ -417,7 +417,7 @@
         "/posts": {
             "post": {
                 "tags": ["Post"],
-                "summary": "Create a post",
+                "summary": "User must be authenticated",
                 "description": "Create a new post",
                 "security": [
                     { "bearerAuth": []}
