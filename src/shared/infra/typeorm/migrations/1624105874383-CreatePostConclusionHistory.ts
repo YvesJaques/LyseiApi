@@ -47,7 +47,6 @@ export class CreatePostConclusionHistory1624105874383
         referencedColumnNames: ["id"],
         columnNames: ["user_id"],
         onDelete: "CASCADE",
-        onUpdate: "CASCADE",
       }),
     );
 
@@ -59,7 +58,6 @@ export class CreatePostConclusionHistory1624105874383
         referencedColumnNames: ["id"],
         columnNames: ["post_id"],
         onDelete: "CASCADE",
-        onUpdate: "CASCADE",
       }),
     );
   }
