@@ -1,10 +1,3 @@
-# Lysei api
-Api desenvolvida durante o Code/Station Hackathon | Rocketseat 2021.\
-O projeto se trata de uma aplicação/rede social para publicação de problemas urbanos com o intuito de chamar a atenção das autoridades políticas para solução e urgência dos mesmos.
-
-# Link do swagger
- - https://lysei.heuristus.com/api-docs/#/
-
 # Cadastro de usuários civis
 
 **RF**
