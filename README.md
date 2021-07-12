@@ -40,7 +40,7 @@ O LyseiApp se trata de uma aplicação/rede social para publicação de problema
 Clone o projeto para sua maquina local:
 ```bash
 # Clone o projeto para sua maquina local
-$ git clone https://github.com/helitonoliveiraa/lysei.git
+$ git clone https://github.com/YvesJaques/LyseiApi.git
 
 # Acesse a pasta do projeto
 $ cd lysei
