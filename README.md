@@ -62,7 +62,9 @@ SOLID
 
 # :arrow_down: Como baixar o projeto
 
-⚠ É necessário possuir as seguintes ferramentas instaladas em seu computador: [nodejs](https://nodejs.org/en/).
+⚠ É necessário possuir as seguintes ferramentas instaladas em seu computador:
+- [nodejs](https://nodejs.org/en/).
+- [docker](https://www.docker.com).
 
 ⚠ Você pode usar tanto o [yarn](https://yarnpkg.com/) quanto o [npm]() para instalar as dependências.
 
