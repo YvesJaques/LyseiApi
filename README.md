@@ -49,7 +49,7 @@ https://lysei.heuristus.com/api-docs/#
 - [Redis](https://redis.io)
 - Etc
 
-# :floppy_disk: Extrutura da base de dados
+# :floppy_disk: Estrutura da base de dados
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/YvesJaques/LyseiApi/main/Lysei_db.png" alt="Lysei">
