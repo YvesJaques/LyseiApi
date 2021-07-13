@@ -8,8 +8,6 @@ interface ICreatePostDTO {
   district?: string;
   street?: string;
   number?: number;
-  picture?: string;
-  video?: string;
   latitude: number;
   longitude: number;
 }

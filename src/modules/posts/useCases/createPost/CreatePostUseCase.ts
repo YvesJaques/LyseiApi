@@ -19,8 +19,6 @@ class CreatePostUseCase {
     district,
     street,
     number,
-    picture,
-    video,
     latitude,
     longitude,
   }: ICreatePostDTO): Promise<Post> {
@@ -33,8 +31,6 @@ class CreatePostUseCase {
       district,
       street,
       number,
-      picture,
-      video,
       latitude,
       longitude,
     });

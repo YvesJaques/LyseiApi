@@ -37,12 +37,6 @@ class Post {
   number: number;
 
   @Column()
-  picture: string;
-
-  @Column()
-  video: string;
-
-  @Column()
   latitude: number;
 
   @Column()
