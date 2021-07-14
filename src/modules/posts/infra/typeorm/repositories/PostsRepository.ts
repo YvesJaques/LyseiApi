@@ -42,7 +42,9 @@ class PostsRepository implements IPostsRepository {
   }
 
   async findById(id: string): Promise<Post> {
-    const post = await this.repository.findOne({ id });
+    const post = await this.repository.findOne(id, {
+      relations: ["images"],
+    });
     return post;
   }
 
@@ -99,12 +101,19 @@ class PostsRepository implements IPostsRepository {
   }
 
   async listPostsByStateAndCity(state: string, city: string): Promise<Post[]> {
-    const posts = await this.repository.find({ state, city });
+    const posts = await this.repository
+      .createQueryBuilder("posts")
+      .select(["posts", "images.image_name"])
+      .where("posts.state = :state", { state })
+      .andWhere("posts.city = :city", { city })
+      .leftJoin("posts.images", "images")
+      .getMany();
+
     return posts;
   }
 
   async listPosts(): Promise<Post[]> {
-    const posts = await this.repository.find();
+    const posts = await this.repository.find({ relations: ["images"] });
     return posts;
   }
 }

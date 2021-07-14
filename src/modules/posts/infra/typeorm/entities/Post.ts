@@ -1,5 +1,13 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryColumn,
+} from "typeorm";
 import { v4 as uuidv4 } from "uuid";
+
+import { PostImage } from "./PostImage";
 
 @Entity("posts")
 class Post {
@@ -35,6 +43,9 @@ class Post {
 
   @Column()
   number: number;
+
+  @OneToMany(() => PostImage, postImage => postImage.post)
+  public images: PostImage[];
 
   @Column()
   latitude: number;

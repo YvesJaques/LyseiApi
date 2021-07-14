@@ -16,6 +16,18 @@ class GetPostDataUseCase {
 
     if (!post) throw new AppError("Post doesn't exist");
 
+    post.images.forEach(image => {
+      switch (process.env.disk) {
+        case "local":
+          image.image_name = `${process.env.APP_API_URL}/posts/${image.image_name}`;
+          break;
+        case "s3":
+          image.image_name = `${process.env.AWS_BUCKET_URL}/posts/${image.image_name}`;
+          break;
+        default:
+      }
+    });
+
     return post;
   }
 }
