@@ -198,6 +198,9 @@
                 "tags": ["User"],
                 "summary": "Update user profile",
                 "description": "User must be authenticated",
+                "security": [
+                    { "bearerAuth": []}
+                ],               
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -250,7 +253,7 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "Created"                   
+                        "description": "Updated"                   
                     },
                     "400": {
                         "description": "Email or CPF already in use!",
