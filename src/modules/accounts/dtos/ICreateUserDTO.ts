@@ -6,6 +6,7 @@ interface ICreateUserDTO {
   email: string;
   state: string;
   city: string;
+  avatar?: string;
   isPolitician?: boolean;
   occupation?: string;
 }
