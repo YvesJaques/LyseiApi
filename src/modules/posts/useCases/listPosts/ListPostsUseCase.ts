@@ -29,6 +29,18 @@ class ListPostsUseCase {
           default:
         }
       });
+
+      if (post.author.avatar) {
+        switch (process.env.disk) {
+          case "local":
+            post.author.avatar = `${process.env.APP_API_URL}/avatar/${post.author.avatar}`;
+            break;
+          case "s3":
+            post.author.avatar = `${process.env.AWS_BUCKET_URL}/avatar/${post.author.avatar}`;
+            break;
+          default:
+        }
+      }
     });
 
     return posts;

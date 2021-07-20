@@ -103,10 +103,11 @@ class PostsRepository implements IPostsRepository {
   async listPostsByStateAndCity(state: string, city: string): Promise<Post[]> {
     const posts = await this.repository
       .createQueryBuilder("posts")
-      .select(["posts", "images.image_name"])
+      .select(["posts", "images.image_name", "users.name", "users.avatar"])
       .where("posts.state = :state", { state })
       .andWhere("posts.city = :city", { city })
       .leftJoin("posts.images", "images")
+      .leftJoin("posts.author", "users")
       .getMany();
 
     return posts;

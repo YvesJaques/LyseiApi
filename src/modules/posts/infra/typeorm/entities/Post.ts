@@ -1,8 +1,11 @@
+import { User } from "@modules/accounts/infra/typeorm/entities/User";
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   OneToMany,
+  OneToOne,
   PrimaryColumn,
 } from "typeorm";
 import { v4 as uuidv4 } from "uuid";
@@ -28,6 +31,10 @@ class Post {
 
   @Column()
   author_id: string;
+
+  @OneToOne(() => User, User => User.name)
+  @JoinColumn({ name: "author_id" })
+  public author: User;
 
   @Column()
   state: string;

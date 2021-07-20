@@ -1,5 +1,13 @@
+import { Post } from "@modules/posts/infra/typeorm/entities/Post";
 import { Expose } from "class-transformer";
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryColumn,
+} from "typeorm";
 import { v4 as uuidv4 } from "uuid";
 
 @Entity("users")
@@ -48,6 +56,10 @@ class User {
         return null;
     }
   }
+
+  @OneToOne(() => Post, post => post.author_id)
+  @JoinColumn({ name: "id" })
+  post: Post;
 
   constructor() {
     if (!this.id) {
