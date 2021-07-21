@@ -1,16 +1,14 @@
 import { UsersRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersRepositoryInMemory";
 
-import { CreateUserUseCase } from "../createUser/CreateUserUseCase";
 import { ProfileUserUseCase } from "./ProfileUserUseCase";
 
-let createUserUseCase: CreateUserUseCase;
 let usersRepositoryInMemory: UsersRepositoryInMemory;
 let profileUserUseCase: ProfileUserUseCase;
 
 describe("Get user profile", () => {
   beforeEach(() => {
     usersRepositoryInMemory = new UsersRepositoryInMemory();
-    createUserUseCase = new CreateUserUseCase(usersRepositoryInMemory);
+
     profileUserUseCase = new ProfileUserUseCase(usersRepositoryInMemory);
   });
 
@@ -26,7 +24,7 @@ describe("Get user profile", () => {
       occupation: "President",
     };
 
-    await createUserUseCase.execute(data);
+    await usersRepositoryInMemory.create(data);
 
     const profile = await profileUserUseCase.execute(
       usersRepositoryInMemory.users[0].id,
