@@ -1,4 +1,5 @@
 import { User } from "@modules/accounts/infra/typeorm/entities/User";
+import { PostLikes } from "@modules/posts/infra/typeorm/entities/PostLikes";
 import {
   Column,
   CreateDateColumn,
@@ -53,6 +54,9 @@ class Post {
 
   @OneToMany(() => PostImage, postImage => postImage.post)
   public images: PostImage[];
+
+  @OneToMany(() => PostLikes, postLikes => postLikes.post)
+  public userLiked: PostLikes[];
 
   @Column()
   latitude: number;

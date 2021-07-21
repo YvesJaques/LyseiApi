@@ -9,13 +9,17 @@ class ListPostsUseCase {
     private postsRepository: IPostsRepository,
   ) {}
 
-  async execute(state: string, city: string): Promise<Post[]> {
+  async execute(user_id: string, state: string, city: string): Promise<Post[]> {
     let posts: Post[] = [];
 
     if (state === "" && city === "")
       posts = await this.postsRepository.listPosts();
     else
-      posts = await this.postsRepository.listPostsByStateAndCity(state, city);
+      posts = await this.postsRepository.listPostsByStateAndCity(
+        user_id,
+        state,
+        city,
+      );
 
     posts.forEach(post => {
       post.images.forEach(image => {

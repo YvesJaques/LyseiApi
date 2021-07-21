@@ -3,11 +3,15 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   JoinTable,
   ManyToMany,
+  ManyToOne,
   PrimaryColumn,
 } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
+
+import { Post } from "./Post";
 
 @Entity("posts_likes")
 class PostLikes {
@@ -27,6 +31,10 @@ class PostLikes {
     inverseJoinColumns: [{ name: "user_id" }],
   })
   users: User[];
+
+  @ManyToOne(() => Post)
+  @JoinColumn({ name: "post_id" })
+  post: Post;
 
   @CreateDateColumn()
   created_at: Date;

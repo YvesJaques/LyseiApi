@@ -9,7 +9,11 @@ interface IPostsRepository {
   likeById(id: string): Promise<number>;
   disLikeById(id: string): Promise<number>;
   listPosts(): Promise<Post[]>;
-  listPostsByStateAndCity(state: string, city: string): Promise<Post[]>;
+  listPostsByStateAndCity(
+    user_id: string,
+    state: string,
+    city: string,
+  ): Promise<Post[]>;
 }
 
 export { IPostsRepository };
