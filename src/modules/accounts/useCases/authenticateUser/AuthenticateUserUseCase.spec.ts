@@ -1,17 +1,16 @@
 import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
 import { UsersRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersRepositoryInMemory";
 import { UsersTokensRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersTokensRepositoryInMemory";
+import { hash } from "bcrypt";
 
 import { DayjsDateProvider } from "@shared/container/providers/DateProvider/implementations/DayjsDateProvider";
 import { AppError } from "@shared/errors/AppError";
 
-import { CreateUserUseCase } from "../createUser/CreateUserUseCase";
 import { AuthenticateUserUseCase } from "./AuthenticateUserUseCase";
 
 let authenticateUserUseCase: AuthenticateUserUseCase;
 let usersRepositoryInMemory: UsersRepositoryInMemory;
 let usersTokensRepositoryInMemory: UsersTokensRepositoryInMemory;
-let createUserUseCase: CreateUserUseCase;
 let dateProvider: DayjsDateProvider;
 
 describe("Authenticate User", () => {
@@ -24,23 +23,23 @@ describe("Authenticate User", () => {
       usersTokensRepositoryInMemory,
       dateProvider,
     );
-    createUserUseCase = new CreateUserUseCase(usersRepositoryInMemory);
   });
 
   it("should be able to authenticate an user", async () => {
     const user: ICreateUserDTO = {
       email: "user@test.com",
       cpf: "1111111111",
-      password: "1234",
+      password: await hash("1234", 8),
       name: "User Test",
       state: "AM",
       city: "Taquatinga",
     };
-    await createUserUseCase.execute(user);
+
+    await usersRepositoryInMemory.create(user);
 
     const result = await authenticateUserUseCase.execute({
       email: user.email,
-      password: user.password,
+      password: "1234",
     });
 
     expect(result).toHaveProperty("token");
@@ -58,13 +57,14 @@ describe("Authenticate User", () => {
   it("Should not be able to authenticate an user with an incorrect password", async () => {
     const user: ICreateUserDTO = {
       email: "user@test.com",
-      cpf: "3333333333",
-      password: "1234",
+      cpf: "1111111111",
+      password: await hash("1234", 8),
       name: "User Test",
       state: "AM",
       city: "Taquatinga",
     };
-    await createUserUseCase.execute(user);
+
+    await usersRepositoryInMemory.create(user);
 
     expect(
       authenticateUserUseCase.execute({
