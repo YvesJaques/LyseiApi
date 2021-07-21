@@ -1,3 +1,4 @@
+import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
 import { UsersRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersRepositoryInMemory";
 
 import { AppError } from "@shared/errors/AppError";
@@ -74,14 +75,16 @@ describe("Create user", () => {
   });
 
   it("Should not able to create a new user with an email already in use", async () => {
-    await createUserUseCase.execute({
-      name: "Test user",
-      password: "Test",
-      cpf: "33333333333",
+    const user: ICreateUserDTO = {
       email: "teste@teste.com",
+      cpf: "1111111111",
+      password: "1234",
+      name: "User Test",
       state: "AM",
-      city: "Tacapé",
-    });
+      city: "Taquatinga",
+    };
+
+    await usersRepositoryInMemory.create(user);
 
     await expect(
       createUserUseCase.execute({
@@ -96,14 +99,16 @@ describe("Create user", () => {
   });
 
   it("Should not able to create a new user with a cpf already in use", async () => {
-    await createUserUseCase.execute({
-      name: "Test user",
-      password: "Test",
-      cpf: "33333333333",
+    const user: ICreateUserDTO = {
       email: "teste@teste.com",
-      state: "PA",
+      cpf: "33333333333",
+      password: "1234",
+      name: "User Test",
+      state: "AM",
       city: "Taquatinga",
-    });
+    };
+
+    await usersRepositoryInMemory.create(user);
 
     await expect(
       createUserUseCase.execute({
