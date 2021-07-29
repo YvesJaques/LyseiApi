@@ -1,5 +1,6 @@
 import { UsersRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersRepositoryInMemory";
 
+import { AppError } from "../../../../shared/errors/AppError";
 import { ProfileUserUseCase } from "./ProfileUserUseCase";
 
 let usersRepositoryInMemory: UsersRepositoryInMemory;
@@ -36,5 +37,11 @@ describe("Get user profile", () => {
     expect(profile).toHaveProperty("state", data.state);
     expect(profile).toHaveProperty("isPolitician", data.isPolitician);
     expect(profile).toHaveProperty("occupation", data.occupation);
+  });
+
+  it("Should not be able to retrieve an unexistent user's profile", async () => {
+    await expect(profileUserUseCase.execute("1")).rejects.toEqual(
+      new AppError("User does not exist!"),
+    );
   });
 });
