@@ -614,6 +614,45 @@
                 }
             }
         },
+        "/posts/favorite/:post_id": {
+            "patch": {
+                "tags": ["Post"],
+                "summary": "Favorite/Unfavorite a post",
+                "description": "User must be authenticated",
+                "security": [
+                    { "bearerAuth": []}
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "post_id",
+                        "schema": {                        
+                            "type": "string",
+                            "format": "uuid"
+                        },                      
+                        "required": "true"
+                    }
+                ],                
+                "responses": {
+                    "200": {
+                        "description": "True = Favorited / False = Unfavorited"                   
+                    },
+                    "401": {
+                        "description": "Invalid token!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                    
+                                    "example": {
+                                        "error": "Invalid token!"
+                                    }                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/posts/conclude/:post_id": {
             "patch": {
                 "tags": ["Post"],
