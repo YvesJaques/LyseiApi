@@ -5,10 +5,12 @@ import { UsersTokensRepository } from "@modules/accounts/infra/typeorm/repositor
 import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
 import { IUsersTokensRepository } from "@modules/accounts/repositories/IUsersTokensRepository";
 import { PostConclusionHistoryRepository } from "@modules/posts/infra/typeorm/repositories/PostConclusionHistoryRepository";
+import { PostFavoritesRepository } from "@modules/posts/infra/typeorm/repositories/PostFavoritesRepository";
 import { PostLikesRepository } from "@modules/posts/infra/typeorm/repositories/PostLikesRepository";
 import { PostsImagesRepository } from "@modules/posts/infra/typeorm/repositories/PostsImagesRepository";
 import { PostsRepository } from "@modules/posts/infra/typeorm/repositories/PostsRepository";
 import { IPostConclusionHistoryRepository } from "@modules/posts/repositories/IPostConclusionHistory";
+import { IPostFavoritesRepository } from "@modules/posts/repositories/IPostFavoritesRepository";
 import { IPostLikesRepository } from "@modules/posts/repositories/IPostLikesRepository";
 import { IPostsImagesRepository } from "@modules/posts/repositories/IPostsImagesRepository";
 import { IPostsRepository } from "@modules/posts/repositories/IPostsRepository";
@@ -42,4 +44,9 @@ container.registerSingleton<IPostLikesRepository>(
 container.registerSingleton<IPostConclusionHistoryRepository>(
   "PostConclusionHistoryRepository",
   PostConclusionHistoryRepository,
+);
+
+container.registerSingleton<IPostFavoritesRepository>(
+  "PostFavoritesRepository",
+  PostFavoritesRepository,
 );

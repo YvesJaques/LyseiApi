@@ -1,6 +1,7 @@
 import uploadConfig from "@config/upload";
 import { ConcludePostController } from "@modules/posts/useCases/concludePost/ConcludePostController";
 import { CreatePostController } from "@modules/posts/useCases/createPost/CreatePostController";
+import { FavoritePostController } from "@modules/posts/useCases/favoritePost/FavoritePostController";
 import { GetPostDataController } from "@modules/posts/useCases/getPostData/GetPostDataController";
 import { GetPostImagesController } from "@modules/posts/useCases/getPostImages/GetPostImagesController";
 import { LikePostController } from "@modules/posts/useCases/likePost/LikePostController";
@@ -20,6 +21,7 @@ const listPostsController = new ListPostsController();
 const concludePostController = new ConcludePostController();
 const getPostDataController = new GetPostDataController();
 const getPostImagesController = new GetPostImagesController();
+const favoritePostController = new FavoritePostController();
 
 postsRoutes.get("/:post_id", ensureAuthenticated, getPostDataController.handle);
 
@@ -46,6 +48,12 @@ postsRoutes.patch(
   "/like/:post_id",
   ensureAuthenticated,
   likePostController.handle,
+);
+
+postsRoutes.patch(
+  "/favorite/:post_id",
+  ensureAuthenticated,
+  favoritePostController.handle,
 );
 
 postsRoutes.patch(
