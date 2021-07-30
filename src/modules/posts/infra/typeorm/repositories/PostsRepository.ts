@@ -113,6 +113,7 @@ class PostsRepository implements IPostsRepository {
         "users.name",
         "users.avatar",
         "posts_likes.created_at",
+        "posts_favorites.created_at",
       ])
       .where("posts.state = :state", { state })
       .andWhere("posts.city = :city", { city })
@@ -122,6 +123,12 @@ class PostsRepository implements IPostsRepository {
         "posts.userLiked",
         "posts_likes",
         "posts_likes.user_id = :user_id",
+        { user_id },
+      )
+      .leftJoin(
+        "posts.userFavorited",
+        "posts_favorites",
+        "posts_favorites.user_id = :user_id",
         { user_id },
       )
       .getMany();

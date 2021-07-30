@@ -1,4 +1,5 @@
 import { User } from "@modules/accounts/infra/typeorm/entities/User";
+import { PostFavorites } from "@modules/posts/infra/typeorm/entities/PostFavorites";
 import { PostLikes } from "@modules/posts/infra/typeorm/entities/PostLikes";
 import {
   Column,
@@ -57,6 +58,9 @@ class Post {
 
   @OneToMany(() => PostLikes, postLikes => postLikes.post)
   public userLiked: PostLikes[];
+
+  @OneToMany(() => PostFavorites, postFavorites => postFavorites.post)
+  public userFavorited: PostLikes[];
 
   @Column()
   latitude: number;
