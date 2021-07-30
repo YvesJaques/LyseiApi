@@ -68,9 +68,20 @@ describe("Refresh Token", () => {
   });
 
   it("Should not be able to return a refresh token when provided with a non existent refresh token", async () => {
+    const user: ICreateUserDTO = {
+      email: "user@test.com",
+      cpf: "1111111111",
+      password: await hash("1234", 8),
+      name: "User Test",
+      state: "AM",
+      city: "Taquatinga",
+    };
+
+    await usersRepositoryInMemory.create(user);
+
     await expect(
       refreshTokenUseCase.execute(
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAdGVzdC5jb20iLCJpYXQiOjE2Mjc1ODc5NjgsImV4cCI6MTYyNzU5NTE2OCwic3ViIjoiODQ3NjQ1ZjMtYTc1My00ZGYxLWI2MDUtNTFhNDg0YmY3ZDVlIn0.7VU7kDJ87QVyZp38vVcTFySosx8V3_etu5aM82ZlNeA",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAdGVzdC5jb20iLCJpYXQiOjE2Mjc2NDk2OTMsImV4cCI6MTYyNzY1Njg5Mywic3ViIjoiMTE2MWI4YzYtODRkYy00ZTExLTllMzQtNjk1YTdmMTc4ZTRmIn0._fIH8Gz3XOWCDLQND_VQL9O8iyfhhF0OcuFZgLueYCs",
       ),
     ).rejects.toEqual(new AppError("Refresh Token does not exist!"));
   });
