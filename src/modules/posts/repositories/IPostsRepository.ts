@@ -2,6 +2,7 @@ import { ICreatePostDTO } from "../dtos/ICreatePostDTO";
 import { Post } from "../infra/typeorm/entities/Post";
 
 interface IPostsRepository {
+  listUserCreatedPosts(user_id: string): Promise<Post[]>;
   findByCityAndState(city: string, state: string): Promise<Post>;
   create(data: ICreatePostDTO): Promise<Post>;
   findById(id: string): Promise<Post>;

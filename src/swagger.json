@@ -575,6 +575,130 @@
                 }
             }
         },
+        "/posts/listUserCreatedPosts/:user_id": {
+            "get": {
+                "tags": ["Post"],
+                "summary": "List user created posts",
+                "description": "User must be authenticated",
+                "security": [
+                    { "bearerAuth": []}
+                ],  
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "user_id",
+                        "schema": {                        
+                            "type": "string",
+                            "format": "uuid"
+                        },                      
+                        "required": "true"
+                    }
+                ],           
+                "responses": {
+                    "200": {
+                        "description": "Success!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                    
+                                    "example": [                                   
+                                        {
+                                            "id": "fc7390a5-bb93-4f75-b40e-3bbb7c7f7814",
+                                            "title": "Escola em decadência",
+                                            "description": "Escola antiga em decadência",
+                                            "solved": false,
+                                            "likes": 2,
+                                            "author_id": "317e8adf-2848-4d47-883c-fbf0dff2190c",
+                                            "state": "AM",
+                                            "city": "Taubaté",
+                                            "district": "Centro",
+                                            "street": "Rua do Acampamento",
+                                            "number": 900,
+                                            "latitude": 56.3,
+                                            "longitude": 10043.7,
+                                            "created_at": "2021-07-14T20:29:27.065Z",
+                                            "images": [
+                                              {
+                                                "id": "e4d31899-c70e-4679-abeb-dbe8ae35d8fa",
+                                                "image_name": "localhost:3333/posts/0f7abc3d2b0451b97cf437893e2f6d16-Screenshot from 2021-03-16 15-04-02.png"
+                                              },
+                                              {
+                                                "id": "35af54cd-355f-442e-b3c3-6510ae99b5d6",
+                                                "image_name": "localhost:3333/posts/d7c88eee19c7dc92eec42203e1f1353e-Captura de tela de 2021-06-27 11-45-50.png"
+                                              }
+                                            ],
+                                            "author": {
+                                              "id": "637b75a0-b3a3-492e-8808-1dc4664cc312",
+                                              "name": "Yves Jaques",
+                                              "avatar": "localhost:3333/avatar/d6dd59860178ed5e82638cf944544c3b-wats.jpg"
+                                            },
+                                            "userLiked": [
+                                              {
+                                                "id": "72456b96-7ccf-4251-b800-e69fec7d23f5",
+                                                "created_at": "2021-07-21T14:29:12.047Z"
+                                              }
+                                            ],
+                                            "userFavorited": []
+                                          },
+                                          {
+                                            "id": "ae8e009a-96f7-43f5-93d7-f5ed90779188",
+                                            "title": "Escola em decadência",
+                                            "description": "Ponte caindo",
+                                            "solved": false,
+                                            "likes": 0,
+                                            "author_id": "317e8adf-2848-4d47-883c-fbf0dff2190c",
+                                            "state": "RS",
+                                            "city": "Santana",
+                                            "district": "Centro",
+                                            "street": "Rua do Acampamento",
+                                            "number": 900,
+                                            "latitude": 56.3,
+                                            "longitude": 10043.7,
+                                            "created_at": "2021-07-14T22:09:00.030Z",
+                                            "images": [],
+                                            "author": {
+                                              "id": "a7b21667-3c08-471a-a2a1-118bf3e14f28",
+                                              "name": "Yves Jaques",
+                                              "avatar": "localhost:3333/avatar/d6dd59860178ed5e82638cf944544c3b-wats.jpg"
+                                            },
+                                            "userLiked": [],
+                                            "userFavorited": []
+                                          },
+                                          {
+                                            "id": "49d74398-edf2-4245-a92e-d231d4c15fa7",
+                                            "title": "Escola em decadência",
+                                            "description": "Escola antiga em decadência",
+                                            "solved": false,
+                                            "likes": 0,
+                                            "author_id": "317e8adf-2848-4d47-883c-fbf0dff2190c",
+                                            "state": "AM",
+                                            "city": "Taubaté",
+                                            "district": "Centro",
+                                            "street": "Rua do Acampamento",
+                                            "number": 900,
+                                            "latitude": 56.3,
+                                            "longitude": 10043.7,
+                                            "created_at": "2021-07-14T20:29:27.030Z",
+                                            "images": [],
+                                            "author": {
+                                              "id": "f64a7104-1511-4478-9864-7d0e88fc98b3",
+                                              "name": "Yves Jaques",
+                                              "avatar": "localhost:3333/avatar/d6dd59860178ed5e82638cf944544c3b-wats.jpg"
+                                            },
+                                            "userLiked": [],
+                                            "userFavorited": []
+                                          }
+                                    ]                                    
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+
+                    }
+                }
+            }
+        },
         "/posts/like/:post_id": {
             "patch": {
                 "tags": ["Post"],

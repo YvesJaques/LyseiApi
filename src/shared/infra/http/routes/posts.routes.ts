@@ -6,6 +6,7 @@ import { GetPostDataController } from "@modules/posts/useCases/getPostData/GetPo
 import { GetPostImagesController } from "@modules/posts/useCases/getPostImages/GetPostImagesController";
 import { LikePostController } from "@modules/posts/useCases/likePost/LikePostController";
 import { ListPostsController } from "@modules/posts/useCases/listPosts/ListPostsController";
+import { ListUserCreatedPostsController } from "@modules/posts/useCases/listUserCreatedPosts/ListUserCreatedPostsController";
 import { UploadPostImagesController } from "@modules/posts/useCases/uploadPostImages/UploadPostImagesController";
 import { Router } from "express";
 import multer from "multer";
@@ -22,6 +23,7 @@ const concludePostController = new ConcludePostController();
 const getPostDataController = new GetPostDataController();
 const getPostImagesController = new GetPostImagesController();
 const favoritePostController = new FavoritePostController();
+const listUserCreatedPostsController = new ListUserCreatedPostsController();
 
 postsRoutes.get("/:post_id", ensureAuthenticated, getPostDataController.handle);
 
@@ -62,4 +64,9 @@ postsRoutes.patch(
   concludePostController.handle,
 );
 
+postsRoutes.get(
+  "/listUserCreatedPosts/:user_id",
+  ensureAuthenticated,
+  listUserCreatedPostsController.handle,
+);
 export { postsRoutes };
