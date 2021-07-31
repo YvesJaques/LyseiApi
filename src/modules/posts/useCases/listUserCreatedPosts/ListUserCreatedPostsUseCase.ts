@@ -1,15 +1,24 @@
+import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
 import { Post } from "@modules/posts/infra/typeorm/entities/Post";
 import { IPostsRepository } from "@modules/posts/repositories/IPostsRepository";
 import { inject, injectable } from "tsyringe";
 
+import { AppError } from "@shared/errors/AppError";
+
 @injectable()
 class ListUserCreatedPostsUseCase {
   constructor(
+    @inject("UsersRepository")
+    private usersRepository: IUsersRepository,
+
     @inject("PostsRepository")
     private postsRepository: IPostsRepository,
   ) {}
 
   async execute(user_id: string): Promise<Post[]> {
+    const user = await this.usersRepository.findById(user_id);
+
+    if (!user) throw new AppError("User does not exist!");
     let posts: Post[] = [];
 
     posts = await this.postsRepository.listUserCreatedPosts(user_id);
