@@ -171,6 +171,37 @@ class PostsRepository implements IPostsRepository {
 
     return posts;
   }
+
+  async listUserFavoritePosts(user_id: string): Promise<Post[]> {
+    const posts = await this.repository
+      .createQueryBuilder("posts")
+      .select([
+        "posts",
+        "images.image_name",
+        "users.name",
+        "users.avatar",
+        "posts_likes.created_at",
+        "posts_favorites.created_at",
+      ])
+      // .where("posts_favorites.user_id = :user_id", { user_id })
+      .leftJoin("posts.images", "images")
+      .leftJoin("posts.author", "users")
+      .leftJoin(
+        "posts.userLiked",
+        "posts_likes",
+        "posts_likes.user_id = :user_id",
+        { user_id },
+      )
+      .innerJoin(
+        "posts.userFavorited",
+        "posts_favorites",
+        "posts_favorites.user_id = :user_id",
+        { user_id },
+      )
+      .getMany();
+
+    return posts;
+  }
 }
 
 export { PostsRepository };

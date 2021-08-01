@@ -7,6 +7,7 @@ import { GetPostImagesController } from "@modules/posts/useCases/getPostImages/G
 import { LikePostController } from "@modules/posts/useCases/likePost/LikePostController";
 import { ListPostsController } from "@modules/posts/useCases/listPosts/ListPostsController";
 import { ListUserCreatedPostsController } from "@modules/posts/useCases/listUserCreatedPosts/ListUserCreatedPostsController";
+import { ListUserFavoritePostsController } from "@modules/posts/useCases/listUserFavoritePosts/ListUserFavoritePostsController";
 import { UploadPostImagesController } from "@modules/posts/useCases/uploadPostImages/UploadPostImagesController";
 import { Router } from "express";
 import multer from "multer";
@@ -24,6 +25,7 @@ const getPostDataController = new GetPostDataController();
 const getPostImagesController = new GetPostImagesController();
 const favoritePostController = new FavoritePostController();
 const listUserCreatedPostsController = new ListUserCreatedPostsController();
+const listUserFavoritePostsController = new ListUserFavoritePostsController();
 
 postsRoutes.get("/:post_id", ensureAuthenticated, getPostDataController.handle);
 
@@ -69,4 +71,11 @@ postsRoutes.get(
   ensureAuthenticated,
   listUserCreatedPostsController.handle,
 );
+
+postsRoutes.get(
+  "/favorite/list",
+  ensureAuthenticated,
+  listUserFavoritePostsController.handle,
+);
+
 export { postsRoutes };

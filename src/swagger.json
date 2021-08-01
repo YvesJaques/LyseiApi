@@ -777,6 +777,86 @@
                 }
             }
         },
+        "/posts/favorite/list": {
+            "get": {
+                "tags": ["Post"],
+                "summary": "List user favorite posts",
+                "description": "User must be authenticated",
+                "security": [
+                    { "bearerAuth": []}
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                    
+                                    "example": [
+                                        {
+                                          "id": "fc7390a5-bb93-4f75-b40e-3bbb7c7f7814",
+                                          "title": "Escola em decadência",
+                                          "description": "Escola antiga em decadência",
+                                          "solved": false,
+                                          "likes": 2,
+                                          "author_id": "317e8adf-2848-4d47-883c-fbf0dff2190c",
+                                          "state": "AM",
+                                          "city": "Taubaté",
+                                          "district": "Centro",
+                                          "street": "Rua do Acampamento",
+                                          "number": 900,
+                                          "latitude": 56.3,
+                                          "longitude": 10043.7,
+                                          "created_at": "2021-07-14T20:29:27.065Z",
+                                          "images": [
+                                            {
+                                              "id": "63ad3a7b-5a3e-4f02-ad50-cae1cdf9178b",
+                                              "image_name": "localhost:3333/posts/d7c88eee19c7dc92eec42203e1f1353e-Captura de tela de 2021-06-27 11-45-50.png"
+                                            },
+                                            {
+                                              "id": "50518316-a69e-47fc-b102-99c57578d754",
+                                              "image_name": "localhost:3333/posts/0f7abc3d2b0451b97cf437893e2f6d16-Screenshot from 2021-03-16 15-04-02.png"
+                                            }
+                                          ],
+                                          "author": {
+                                            "id": "3aa55902-500b-423b-b9fc-acb28e3ec66f",
+                                            "name": "Yves Jaques",
+                                            "avatar": "localhost:3333/avatar/d6dd59860178ed5e82638cf944544c3b-wats.jpg"
+                                          },
+                                          "userLiked": [
+                                            {
+                                              "id": "487f5a00-c73b-4df0-be25-3d92e9f0f21c",
+                                              "created_at": "2021-07-30T21:42:34.928Z"
+                                            }
+                                          ],
+                                          "userFavorited": [
+                                            {
+                                              "id": "45c8eadb-8f33-41f5-bda2-4377cf0fa0e8",
+                                              "created_at": "2021-08-01T15:06:56.068Z"
+                                            }
+                                          ]
+                                        }
+                                    ]                                    
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid token!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                    
+                                    "example": {
+                                        "error": "Invalid token!"
+                                    }                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/posts/conclude/:post_id": {
             "patch": {
                 "tags": ["Post"],
