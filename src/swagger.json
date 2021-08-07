@@ -328,6 +328,56 @@
                 }
             } 
         },
+        "/users/checkEmailAvailability/:email": {
+            "get": {
+                "tags": ["User"],
+                "summary": "Check email availability",   
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "email",
+                        "schema": {                        
+                            "type": "string"                            
+                        },                      
+                        "required": "true"
+                    }
+                ],              
+                "responses": {
+                    "200": {
+                        "description": "Email available!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {                                   
+                                        "email": {
+                                            "type": "string",
+                                            "required": true
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "Email available!"
+                                    }                                
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Email already in use!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                    
+                                    "example": {
+                                        "message": "Email already in use!"
+                                    }                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            } 
+        },
         "/users/resetPassword": {
             "patch": {
                 "tags": ["User"],

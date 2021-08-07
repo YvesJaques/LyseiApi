@@ -1,4 +1,5 @@
 import uploadConfig from "@config/upload";
+import { CheckEmailAvailabilityController } from "@modules/accounts/useCases/checkEmailAvailability/CheckEmailAvailabilityController";
 import { CreateUserController } from "@modules/accounts/useCases/createUser/CreateUserController";
 import { ProfileUserController } from "@modules/accounts/useCases/profileUser/ProfileUserController";
 import { ResetUserPasswordController } from "@modules/accounts/useCases/resetUserPassword/ResetUserPasswordController";
@@ -20,6 +21,7 @@ const updateUserProfileUseCase = new UpdateUserProfileController();
 const resetUserPasswordController = new ResetUserPasswordController();
 const updateUserAvatarController = new UpdateUserAvatarController();
 const viewUserProfileController = new ViewUserProfileController();
+const checkEmailAvailabilityController = new CheckEmailAvailabilityController();
 
 usersRoutes.post("/", createUserController.handle);
 
@@ -44,6 +46,11 @@ usersRoutes.patch(
   "/resetPassword",
   ensureAuthenticated,
   resetUserPasswordController.handle,
+);
+
+usersRoutes.get(
+  "/checkEmailAvailability/:email",
+  checkEmailAvailabilityController.handle,
 );
 
 export { usersRoutes };
